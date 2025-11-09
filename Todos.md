@@ -3,35 +3,35 @@
 ## 🚀 Project Setup
 
 ### Initial Setup
-- [ ] Create new React app with TypeScript: `npx create-react-app turtlerocket-time-twister --template typescript`
-- [ ] Install required dependencies: `npm install ical.js @types/ical.js`
-- [ ] Install testing utilities if needed: `npm install --save-dev @testing-library/react @testing-library/user-event`
-- [ ] Set up folder structure:
-  - [ ] Create `src/components/` directory
-  - [ ] Create `src/utils/` directory
-  - [ ] Create `src/types/` directory
+- [x] Create new React app with TypeScript: `npx create-react-app turtlerocket-time-twister --template typescript`
+- [x] Install required dependencies: `npm install ical.js`
+- [x] Install testing utilities if needed: `npm install --save-dev @testing-library/react @testing-library/user-event` (included with Create React App)
+- [x] Set up folder structure:
+  - [x] Create `src/components/` directory
+  - [x] Create `src/utils/` directory
+  - [x] Create `src/types/` directory
   - [ ] Create `src/config/` directory
   - [ ] Create `src/__tests__/` directory
   - [ ] Create `src/test-utils/` directory
 
 ### Git Setup
-- [ ] Initialize git repository
-- [ ] Create `.gitignore` if not present
-- [ ] Make initial commit
-- [ ] Set up remote repository (optional)
+- [x] Initialize git repository (already initialized)
+- [x] Create `.gitignore` if not present (already present)
+- [x] Make initial commit
+- [x] Set up remote repository (optional)
 
 ---
 
 ## 📋 Phase 1: Foundation
 
 ### Iteration 1.1: Project Initialization
-- [ ] Create basic `App.tsx` with "TurtleRocket Time Twister" heading
-- [ ] Set up basic CSS with centered container (max-width: 800px)
-- [ ] Add subtle box shadow to container
-- [ ] Write test: App renders heading correctly
-- [ ] Write test: Container has proper styling
-- [ ] Ensure all tests pass
-- [ ] Commit: "Add basic app structure and styling"
+- [x] Create basic `App.tsx` with "TurtleRocket Time Twister" heading
+- [x] Set up basic CSS with centered container (max-width: 800px)
+- [x] Add subtle box shadow to container
+- [x] Write test: App renders heading correctly
+- [x] Write test: Container has proper styling
+- [x] Ensure all tests pass
+- [x] Commit: "feat: Initialize TurtleRocket Time Twister React project"
 
 ### Iteration 1.2: Core State Structure
 - [ ] Create `src/types/index.ts` with TypeScript interfaces:
