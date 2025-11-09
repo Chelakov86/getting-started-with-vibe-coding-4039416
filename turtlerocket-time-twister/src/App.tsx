@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
+import { AppState } from './types';
+import { initialState } from './utils/stateHelpers';
 
 function App() {
+  const [appState, setAppState] = useState<AppState>(initialState);
+
   return (
     <div className="App" data-testid="app-container">
       <header className="App-header">
