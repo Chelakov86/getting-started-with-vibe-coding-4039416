@@ -1,11 +1,11 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import App from './App';
+import App from '../App';
 import fs from 'fs';
 import path from 'path';
 
 // Read and inject the CSS file
-const cssFile = fs.readFileSync(path.resolve(__dirname, './App.css'), 'utf8');
+const cssFile = fs.readFileSync(path.resolve(__dirname, '../App.css'), 'utf8');
 const styleTag = document.createElement('style');
 styleTag.innerHTML = cssFile;
 document.head.appendChild(styleTag);

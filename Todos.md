@@ -10,9 +10,9 @@
   - [x] Create `src/components/` directory
   - [x] Create `src/utils/` directory
   - [x] Create `src/types/` directory
-  - [ ] Create `src/config/` directory
-  - [ ] Create `src/__tests__/` directory
-  - [ ] Create `src/test-utils/` directory
+  - [x] Create `src/config/` directory
+  - [x] Create `src/__tests__/` directory
+  - [x] Create `src/test-utils/` directory
 
 ### Git Setup
 - [x] Initialize git repository (already initialized)
