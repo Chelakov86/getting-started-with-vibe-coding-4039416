@@ -95,21 +95,21 @@
 ## 📁 Phase 3: File Upload & Parsing
 
 ### Iteration 3.1: File Upload Component
-- [ ] Create `src/components/FileUpload.tsx`
-- [ ] Create `src/components/FileUpload.module.css`
-- [ ] Style file input to look nice
-- [ ] Accept only `.ics` files
-- [ ] Display selected filename
-- [ ] Add clear/remove file button
-- [ ] Create `src/utils/validation.ts`:
-  - [ ] `validateFileType()` function
-  - [ ] `validateFileSize()` function
-  - [ ] `checkICSFormat()` function
-- [ ] Write test: File type validation
-- [ ] Write test: File size validation (max 5MB)
-- [ ] Write test: Error display
-- [ ] Write test: Clear functionality
-- [ ] Commit: "Add file upload component"
+- [x] Create `src/components/FileUpload.tsx`
+- [x] Create `src/components/FileUpload.module.css`
+- [x] Style file input to look nice
+- [x] Accept only `.ics` files
+- [x] Display selected filename
+- [x] Add clear/remove file button
+- [x] Create `src/utils/validation.ts`:
+  - [x] `validateFileType()` function
+  - [x] `validateFileSize()` function
+  - [x] `checkICSFormat()` function
+- [x] Write test: File type validation
+- [x] Write test: File size validation (max 5MB)
+- [x] Write test: Error display
+- [x] Write test: Clear functionality
+- [x] Commit: "Add file upload component"
 
 ### Iteration 3.2: ICS Parser
 - [ ] Create `src/utils/icsParser.ts`
