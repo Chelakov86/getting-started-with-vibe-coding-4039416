@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { AppState } from './types';
 import { initialState } from './utils/stateHelpers';
 import EnergySelector from './components/EnergySelector';
+import FileUpload from './components/FileUpload'; // Import FileUpload component
 import { EnergyLevel } from './types/energy';
 import { initializeDefaultHourlyEnergy } from './utils/energyHelpers';
 
@@ -24,6 +25,9 @@ function App() {
     }
     return { ...initialState, hourlyEnergy: initializeDefaultHourlyEnergy() };
   });
+
+  const [fileUploadProcessing, setFileUploadProcessing] = useState<boolean>(false);
+  const [fileUploadError, setFileUploadError] = useState<string | null>(null);
 
   useEffect(() => {
     try {
@@ -50,6 +54,27 @@ function App() {
     }));
   };
 
+  const handleFileSelect = async (file: File | null) => {
+    setFileUploadError(null);
+    if (file) {
+      setFileUploadProcessing(true);
+      console.log('File selected for processing:', file.name);
+      // Simulate API call or heavy processing
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      setFileUploadProcessing(false);
+      // Here you would typically parse the ICS file and update appState
+      // For now, just log and simulate success/failure
+      if (file.name.includes('error')) { // Example: simulate an error
+        setFileUploadError('Simulated error during file processing.');
+      } else {
+        console.log('File processed successfully (simulated).');
+      }
+    } else {
+      console.log('File cleared.');
+      // Clear any related state if needed
+    }
+  };
+
   return (
     <div className="App" data-testid="app-container">
       <header className="App-header">
@@ -60,6 +85,11 @@ function App() {
           hourlyEnergy={appState.hourlyEnergy}
           onEnergyChange={handleEnergyChange}
           onReset={handleResetEnergy}
+        />
+        <FileUpload
+          onFileSelect={handleFileSelect}
+          isProcessing={fileUploadProcessing}
+          error={fileUploadError}
         />
       </main>
     </div>
