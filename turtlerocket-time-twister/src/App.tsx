@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { AppState } from './types';
+import { AppState, ClassifiedEvent } from './types';
 import { initialState } from './utils/stateHelpers';
 import EnergySelector from './components/EnergySelector';
 import FileUpload from './components/FileUpload'; // Import FileUpload component
 import { EnergyLevel } from './types/energy';
 import { initializeDefaultHourlyEnergy } from './utils/energyHelpers';
 import { parseICSFile, ICSParseError } from './utils/icsParser';
+import { classifyEvents } from './utils/classifier';
 
 const LOCAL_STORAGE_KEY = 'turtleRocketTimeTwisterAppState';
 
@@ -61,22 +62,35 @@ function App() {
       setFileUploadProcessing(true);
       try {
         const fileContent = await file.text();
-        const events = parseICSFile(fileContent);
+        const parsedEvents = parseICSFile(fileContent);
+        
+        // Classify events using the classification algorithm
+        const classifiedParsedEvents = classifyEvents(parsedEvents);
         
         // Convert ParsedEvent to CalendarEvent format
-        const calendarEvents = events.map(event => ({
+        const calendarEvents = classifiedParsedEvents.map(event => ({
           uid: event.id,
           summary: event.title,
           start: event.startTime,
           end: event.endTime,
         }));
         
+        // Convert to ClassifiedEvent format for state
+        const classifiedEvents: ClassifiedEvent[] = classifiedParsedEvents.map(event => ({
+          uid: event.id,
+          summary: event.title,
+          start: event.startTime,
+          end: event.endTime,
+          classification: event.cognitiveLoad,
+        }));
+        
         setAppState((prevState) => ({
           ...prevState,
           uploadedEvents: calendarEvents,
+          classifiedEvents,
         }));
         
-        console.log(`Successfully parsed ${calendarEvents.length} events`);
+        console.log(`Successfully parsed and classified ${calendarEvents.length} events`);
       } catch (error) {
         if (error instanceof ICSParseError) {
           setFileUploadError(error.message);
@@ -92,6 +106,7 @@ function App() {
       setAppState((prevState) => ({
         ...prevState,
         uploadedEvents: [],
+        classifiedEvents: [],
       }));
     }
   };
