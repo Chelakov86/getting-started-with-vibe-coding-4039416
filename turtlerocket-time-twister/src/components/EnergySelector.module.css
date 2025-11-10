@@ -1,0 +1,74 @@
+.energySelector {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.hourBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 5px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  min-height: 80px;
+  border: 1px solid transparent; /* For consistent sizing */
+}
+
+.hourBlock:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.hourLabel {
+  font-size: 0.9em;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.energyEmoji {
+  font-size: 1.8em;
+}
+
+/* Energy Level Colors */
+.low {
+  background-color: #E3F2FD; /* Light Blue */
+  color: #2196F3;
+}
+
+.medium {
+  background-color: #FFF9C4; /* Light Yellow */
+  color: #FFC107;
+}
+
+.high {
+  background-color: #E8F5E9; /* Light Green */
+  color: #4CAF50;
+}
+
+.resetButton {
+  background-color: #607D8B;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+
+.resetButton:hover {
+  background-color: #455A64;
+}

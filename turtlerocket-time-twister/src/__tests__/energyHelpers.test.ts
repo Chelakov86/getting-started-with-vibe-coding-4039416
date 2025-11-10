@@ -1,118 +1,95 @@
 import {
-  initializeDefaultEnergyArray,
+  initializeDefaultHourlyEnergy,
   updateEnergyLevelAtHour,
   getEnergyLevelForHour,
-  resetToDefaultPattern,
+  resetToDefaultHourlyEnergy,
   cycleEnergyLevel,
 } from '../utils/energyHelpers';
-import { EnergyLevel, TimeSlot } from '../types/energy';
+import { EnergyLevel, HourlyEnergy } from '../types/energy';
 
 describe('energyHelpers', () => {
   const START_HOUR = 8;
   const END_HOUR = 19;
 
-  describe('initializeDefaultEnergyArray', () => {
-    it('should return an array of TimeSlot objects with default medium energy levels', () => {
-      const defaultArray = initializeDefaultEnergyArray();
-      expect(defaultArray).toHaveLength(END_HOUR - START_HOUR + 1);
-      defaultArray.forEach((slot, index) => {
-        expect(slot.hour).toBe(START_HOUR + index);
-        expect(slot.level).toBe('medium');
-      });
+  let initialHourlyEnergy: HourlyEnergy;
+
+  beforeEach(() => {
+    initialHourlyEnergy = initializeDefaultHourlyEnergy();
+  });
+
+  describe('initializeDefaultHourlyEnergy', () => {
+    test('should initialize an HourlyEnergy object with medium energy for all hours from 8 to 19', () => {
+      const expectedHourlyEnergy: HourlyEnergy = {};
+      for (let i = START_HOUR; i <= END_HOUR; i++) {
+        expectedHourlyEnergy[i] = EnergyLevel.Medium;
+      }
+      expect(initialHourlyEnergy).toEqual(expectedHourlyEnergy);
     });
   });
 
   describe('updateEnergyLevelAtHour', () => {
-    let initialArray: TimeSlot[];
-
-    beforeEach(() => {
-      initialArray = initializeDefaultEnergyArray();
+    test('should update the energy level for a specific hour', () => {
+      const updatedHourlyEnergy = updateEnergyLevelAtHour(initialHourlyEnergy, 10, EnergyLevel.High);
+      expect(updatedHourlyEnergy[10]).toBe(EnergyLevel.High);
+      expect(updatedHourlyEnergy).not.toBe(initialHourlyEnergy); // Ensure immutability
+      expect(initialHourlyEnergy[10]).toBe(EnergyLevel.Medium); // Original should be unchanged
     });
 
-    it('should update the energy level for a specific hour', () => {
-      const updatedArray = updateEnergyLevelAtHour(initialArray, 10, 'high');
-      expect(updatedArray).not.toBe(initialArray); // Should return a new array
-      expect(getEnergyLevelForHour(updatedArray, 10)).toBe('high');
-      expect(getEnergyLevelForHour(updatedArray, 9)).toBe('medium'); // Other hours unchanged
+    test('should return the original object if the hour is out of bounds (before START_HOUR)', () => {
+      const updatedHourlyEnergy = updateEnergyLevelAtHour(initialHourlyEnergy, START_HOUR - 1, EnergyLevel.High);
+      expect(updatedHourlyEnergy).toEqual(initialHourlyEnergy);
     });
 
-    it('should return the original array if the hour is out of bounds (below START_HOUR)', () => {
-      const updatedArray = updateEnergyLevelAtHour(initialArray, 7, 'high');
-      expect(updatedArray).toBe(initialArray); // Should return the same array reference
-    });
-
-    it('should return the original array if the hour is out of bounds (above END_HOUR)', () => {
-      const updatedArray = updateEnergyLevelAtHour(initialArray, 20, 'high');
-      expect(updatedArray).toBe(initialArray); // Should return the same array reference
+    test('should return the original object if the hour is out of bounds (after END_HOUR)', () => {
+      const updatedHourlyEnergy = updateEnergyLevelAtHour(initialHourlyEnergy, END_HOUR + 1, EnergyLevel.High);
+      expect(updatedHourlyEnergy).toEqual(initialHourlyEnergy);
     });
   });
 
   describe('getEnergyLevelForHour', () => {
-    let energyArray: TimeSlot[];
-
-    beforeEach(() => {
-      energyArray = initializeDefaultEnergyArray();
-      energyArray = updateEnergyLevelAtHour(energyArray, 9, 'low');
-      energyArray = updateEnergyLevelAtHour(energyArray, 15, 'high');
+    test('should return the correct energy level for a given hour', () => {
+      let customHourlyEnergy = { ...initialHourlyEnergy, 9: EnergyLevel.Low };
+      expect(getEnergyLevelForHour(customHourlyEnergy, 9)).toBe(EnergyLevel.Low);
+      expect(getEnergyLevelForHour(customHourlyEnergy, 10)).toBe(EnergyLevel.Medium);
     });
 
-    it('should return the correct energy level for a valid hour', () => {
-      expect(getEnergyLevelForHour(energyArray, 9)).toBe('low');
-      expect(getEnergyLevelForHour(energyArray, 15)).toBe('high');
-      expect(getEnergyLevelForHour(energyArray, 10)).toBe('medium'); // Unchanged hour
-    });
-
-    it('should return "medium" for an hour below START_HOUR', () => {
-      expect(getEnergyLevelForHour(energyArray, 7)).toBe('medium');
-    });
-
-    it('should return "medium" for an hour above END_HOUR', () => {
-      expect(getEnergyLevelForHour(energyArray, 20)).toBe('medium');
+    test('should return EnergyLevel.Medium if the hour is out of bounds', () => {
+      expect(getEnergyLevelForHour(initialHourlyEnergy, START_HOUR - 1)).toBe(EnergyLevel.Medium);
+      expect(getEnergyLevelForHour(initialHourlyEnergy, END_HOUR + 1)).toBe(EnergyLevel.Medium);
     });
   });
 
-  describe('resetToDefaultPattern', () => {
-    it('should reset all energy levels to medium', () => {
-      let energyArray = initializeDefaultEnergyArray();
-      energyArray = updateEnergyLevelAtHour(energyArray, 10, 'high');
-      energyArray = updateEnergyLevelAtHour(energyArray, 12, 'low');
-
-      const resetArray = resetToDefaultPattern();
-      expect(resetArray).toHaveLength(END_HOUR - START_HOUR + 1);
-      resetArray.forEach((slot) => {
-        expect(slot.level).toBe('medium');
-      });
+  describe('resetToDefaultHourlyEnergy', () => {
+    test('should reset all energy levels to medium', () => {
+      let customHourlyEnergy = { ...initialHourlyEnergy, 9: EnergyLevel.Low, 15: EnergyLevel.High };
+      const resetHourlyEnergy = resetToDefaultHourlyEnergy();
+      expect(resetHourlyEnergy).toEqual(initialHourlyEnergy); // Should be same as initial default
+      expect(resetHourlyEnergy).not.toBe(customHourlyEnergy);
     });
   });
 
   describe('cycleEnergyLevel', () => {
-    let initialArray: TimeSlot[];
-
-    beforeEach(() => {
-      initialArray = initializeDefaultEnergyArray(); // All medium
+    test('should cycle energy level from Low to Medium', () => {
+      let customHourlyEnergy = { ...initialHourlyEnergy, 10: EnergyLevel.Low };
+      const cycledHourlyEnergy = cycleEnergyLevel(customHourlyEnergy, 10);
+      expect(cycledHourlyEnergy[10]).toBe(EnergyLevel.Medium);
     });
 
-    it('should cycle from medium to high', () => {
-      const arrayAfterFirstCycle = cycleEnergyLevel(initialArray, 10);
-      expect(getEnergyLevelForHour(arrayAfterFirstCycle, 10)).toBe('high');
+    test('should cycle energy level from Medium to High', () => {
+      let customHourlyEnergy = { ...initialHourlyEnergy, 12: EnergyLevel.Medium };
+      const cycledHourlyEnergy = cycleEnergyLevel(customHourlyEnergy, 12);
+      expect(cycledHourlyEnergy[12]).toBe(EnergyLevel.High);
     });
 
-    it('should cycle from high to low', () => {
-      let array = cycleEnergyLevel(initialArray, 10); // medium -> high
-      array = cycleEnergyLevel(array, 10); // high -> low
-      expect(getEnergyLevelForHour(array, 10)).toBe('low');
+    test('should cycle energy level from High to Low', () => {
+      let customHourlyEnergy = { ...initialHourlyEnergy, 14: EnergyLevel.High };
+      const cycledHourlyEnergy = cycleEnergyLevel(customHourlyEnergy, 14);
+      expect(cycledHourlyEnergy[14]).toBe(EnergyLevel.Low);
     });
 
-    it('should cycle from low to medium', () => {
-      let array = cycleEnergyLevel(initialArray, 10); // medium -> high
-      array = cycleEnergyLevel(array, 10); // high -> low
-      array = cycleEnergyLevel(array, 10); // low -> medium
-      expect(getEnergyLevelForHour(array, 10)).toBe('medium');
-    });
-
-    it('should not change the array if the hour is out of bounds', () => {
-      const arrayAfter = cycleEnergyLevel(initialArray, 7);
-      expect(arrayAfter).toBe(initialArray); // Should return the same reference as the input
+    test('should handle hours out of bounds gracefully (return original)', () => {
+      const cycledHourlyEnergy = cycleEnergyLevel(initialHourlyEnergy, START_HOUR - 1);
+      expect(cycledHourlyEnergy).toEqual(initialHourlyEnergy);
     });
   });
 });

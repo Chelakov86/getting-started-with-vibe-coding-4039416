@@ -1,6 +1,4 @@
-// src/types/index.ts
-
-export type EnergyLevel = 'low' | 'medium' | 'high';
+import { HourlyEnergy } from './energy';
 
 export interface CalendarEvent {
   uid: string;
@@ -19,7 +17,7 @@ export interface OptimizedEvent extends ClassifiedEvent {
 }
 
 export interface AppState {
-  energyLevels: EnergyLevel[];
+  hourlyEnergy: HourlyEnergy;
   uploadedEvents: CalendarEvent[];
   classifiedEvents: ClassifiedEvent[];
   optimizedEvents: OptimizedEvent[];

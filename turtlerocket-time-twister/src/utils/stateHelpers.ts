@@ -1,21 +1,20 @@
 // src/utils/stateHelpers.ts
 
-import { AppState, EnergyLevel, CalendarEvent, ClassifiedEvent, OptimizedEvent } from '../types';
+import { AppState, CalendarEvent, ClassifiedEvent, OptimizedEvent } from '../types';
+import { EnergyLevel, HourlyEnergy } from '../types/energy';
+
+const defaultHourlyEnergy: HourlyEnergy = {};
+for (let i = 8; i < 20; i++) {
+  defaultHourlyEnergy[i] = EnergyLevel.Medium;
+}
 
 export const initialState: AppState = {
-  energyLevels: Array(12).fill('medium'),
+  hourlyEnergy: defaultHourlyEnergy,
   uploadedEvents: [],
   classifiedEvents: [],
   optimizedEvents: [],
   isProcessing: false,
 };
-
-export function setEnergyLevels(state: AppState, energyLevels: EnergyLevel[]): AppState {
-  return {
-    ...state,
-    energyLevels,
-  };
-}
 
 export function setUploadedEvents(state: AppState, uploadedEvents: CalendarEvent[]): AppState {
   return {

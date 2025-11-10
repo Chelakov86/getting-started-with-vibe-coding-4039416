@@ -1,95 +1,95 @@
-import { EnergyLevel, TimeSlot } from '../types/energy';
+import { EnergyLevel, HourlyEnergy } from '../types/energy';
 
 const START_HOUR = 8;
-const END_HOUR = 19;
+const END_HOUR = 19; // Represents 7 PM
 
 /**
- * Initializes an array of TimeSlot objects with a default energy pattern.
+ * Initializes an HourlyEnergy object with a default energy pattern.
  * The default pattern is 'medium' for all hours from START_HOUR to END_HOUR.
- * @returns {TimeSlot[]} An array of TimeSlot objects.
+ * @returns {HourlyEnergy} An object mapping hours to EnergyLevel.
  */
-export function initializeDefaultEnergyArray(): TimeSlot[] {
-  const energyArray: TimeSlot[] = [];
+export function initializeDefaultHourlyEnergy(): HourlyEnergy {
+  const hourlyEnergy: HourlyEnergy = {};
   for (let hour = START_HOUR; hour <= END_HOUR; hour++) {
-    energyArray.push({ hour, level: 'medium' });
+    hourlyEnergy[hour] = EnergyLevel.Medium;
   }
-  return energyArray;
+  return hourlyEnergy;
 }
 
 /**
- * Updates the energy level for a specific hour in the energy array.
- * If the hour is out of bounds (8-19), it returns the original array unchanged.
- * @param {TimeSlot[]} currentEnergyArray The current array of TimeSlot objects.
+ * Updates the energy level for a specific hour in the HourlyEnergy object.
+ * If the hour is out of bounds (8-19), it returns the original object unchanged.
+ * @param {HourlyEnergy} currentHourlyEnergy The current HourlyEnergy object.
  * @param {number} hour The hour to update (8-19).
  * @param {EnergyLevel} newLevel The new energy level to set.
- * @returns {TimeSlot[]} A new array with the updated energy level, or the original array if the hour is invalid.
+ * @returns {HourlyEnergy} A new object with the updated energy level, or the original object if the hour is invalid.
  */
 export function updateEnergyLevelAtHour(
-  currentEnergyArray: TimeSlot[],
+  currentHourlyEnergy: HourlyEnergy,
   hour: number,
   newLevel: EnergyLevel
-): TimeSlot[] {
+): HourlyEnergy {
   if (hour < START_HOUR || hour > END_HOUR) {
-    return currentEnergyArray; // Hour out of bounds, return original array
+    return currentHourlyEnergy; // Hour out of bounds, return original object
   }
 
-  return currentEnergyArray.map((slot) =>
-    slot.hour === hour ? { ...slot, level: newLevel } : slot
-  );
+  return {
+    ...currentHourlyEnergy,
+    [hour]: newLevel,
+  };
 }
 
 /**
- * Gets the energy level for a given hour from the energy array.
- * Returns 'medium' if the hour is out of bounds or not found.
- * @param {TimeSlot[]} currentEnergyArray The current array of TimeSlot objects.
+ * Gets the energy level for a given hour from the HourlyEnergy object.
+ * Returns EnergyLevel.Medium if the hour is out of bounds or not found.
+ * @param {HourlyEnergy} currentHourlyEnergy The current HourlyEnergy object.
  * @param {number} hour The hour to retrieve the energy level for.
- * @returns {EnergyLevel} The energy level for the given hour, or 'medium' if not found/out of bounds.
+ * @returns {EnergyLevel} The energy level for the given hour, or EnergyLevel.Medium if not found/out of bounds.
  */
 export function getEnergyLevelForHour(
-  currentEnergyArray: TimeSlot[],
+  currentHourlyEnergy: HourlyEnergy,
   hour: number
 ): EnergyLevel {
   if (hour < START_HOUR || hour > END_HOUR) {
-    return 'medium'; // Hour out of bounds, return default
+    return EnergyLevel.Medium; // Hour out of bounds, return default
   }
-  const slot = currentEnergyArray.find((s) => s.hour === hour);
-  return slot ? slot.level : 'medium'; // Return 'medium' if hour not found (shouldn't happen with initializeDefaultEnergyArray)
+  return currentHourlyEnergy[hour] || EnergyLevel.Medium;
 }
 
 /**
- * Resets the energy array to the default pattern (all 'medium').
- * @returns {TimeSlot[]} A new array with all energy levels set to 'medium'.
+ * Resets the HourlyEnergy object to the default pattern (all EnergyLevel.Medium).
+ * @returns {HourlyEnergy} A new object with all energy levels set to EnergyLevel.Medium.
  */
-export function resetToDefaultPattern(): TimeSlot[] {
-  return initializeDefaultEnergyArray();
+export function resetToDefaultHourlyEnergy(): HourlyEnergy {
+  return initializeDefaultHourlyEnergy();
 }
 
 /**
- * Cycles the energy level for a given hour: low -> medium -> high -> low.
- * @param {TimeSlot[]} currentEnergyArray The current array of TimeSlot objects.
+ * Cycles the energy level for a given hour: Low -> Medium -> High -> Low.
+ * @param {HourlyEnergy} currentHourlyEnergy The current HourlyEnergy object.
  * @param {number} hour The hour to cycle the energy level for.
- * @returns {TimeSlot[]} A new array with the cycled energy level.
+ * @returns {HourlyEnergy} A new object with the cycled energy level.
  */
 export function cycleEnergyLevel(
-  currentEnergyArray: TimeSlot[],
+  currentHourlyEnergy: HourlyEnergy,
   hour: number
-): TimeSlot[] {
-  const currentLevel = getEnergyLevelForHour(currentEnergyArray, hour);
+): HourlyEnergy {
+  const currentLevel = getEnergyLevelForHour(currentHourlyEnergy, hour);
   let newLevel: EnergyLevel;
 
   switch (currentLevel) {
-    case 'low':
-      newLevel = 'medium';
+    case EnergyLevel.Low:
+      newLevel = EnergyLevel.Medium;
       break;
-    case 'medium':
-      newLevel = 'high';
+    case EnergyLevel.Medium:
+      newLevel = EnergyLevel.High;
       break;
-    case 'high':
-      newLevel = 'low';
+    case EnergyLevel.High:
+      newLevel = EnergyLevel.Low;
       break;
     default:
-      newLevel = 'medium'; // Should not happen if levels are strictly 'low', 'medium', 'high'
+      newLevel = EnergyLevel.Medium; // Should not happen if levels are strictly 'low', 'medium', 'high'
   }
 
-  return updateEnergyLevelAtHour(currentEnergyArray, hour, newLevel);
+  return updateEnergyLevelAtHour(currentHourlyEnergy, hour, newLevel);
 }
