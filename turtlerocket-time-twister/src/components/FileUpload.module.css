@@ -1,0 +1,73 @@
+/* src/components/FileUpload.module.css */
+
+.fileUploadContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.fileUploadContainer:hover {
+  border-color: #007bff;
+}
+
+.fileUploadContainer.dragOver {
+  border-color: #007bff;
+  background-color: #e9f5ff;
+}
+
+.fileInput {
+  display: none; /* Hide the default file input */
+}
+
+.uploadIcon {
+  font-size: 48px;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.uploadText {
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.uploadText strong {
+  color: #007bff;
+}
+
+.fileName {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #333;
+}
+
+.errorMessage {
+  color: #dc3545;
+  margin-top: 10px;
+}
+
+.processingMessage {
+  color: #007bff;
+  margin-top: 10px;
+}
+
+.clearButton {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.clearButton:hover {
+  background-color: #5a6268;
+}

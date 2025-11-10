@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { AppState } from './types';
 import { initialState } from './utils/stateHelpers';
 import EnergySelector from './components/EnergySelector';
-import { EnergyLevel, HourlyEnergy } from './types/energy';
+import { EnergyLevel } from './types/energy';
 import { initializeDefaultHourlyEnergy } from './utils/energyHelpers';
 
 const LOCAL_STORAGE_KEY = 'turtleRocketTimeTwisterAppState';
