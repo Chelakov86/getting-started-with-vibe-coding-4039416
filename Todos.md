@@ -12,7 +12,7 @@
   - [x] Create `src/types/` directory
   - [x] Create `src/config/` directory
   - [x] Create `src/__tests__/` directory
-  - [x] Create `src/test-utils/` directory
+
 
 ### Git Setup
 - [x] Initialize git repository (already initialized)
@@ -41,8 +41,8 @@
   - [ ] Define `OptimizedEvent` interface
   - [ ] Define `AppState` interface
 - [ ] Initialize state in `App.tsx`
-- [ ] Create `src/utils/stateHelpers.ts`
-- [ ] Write test: Initial state has correct defaults
+- [x] Create `src/utils/stateHelpers.ts`
+- [x] Write test: Initial state has correct defaults
 - [ ] Write test: State update functions work correctly
 - [ ] Write test: State immutability is maintained
 - [ ] Commit: "Add state management and types"

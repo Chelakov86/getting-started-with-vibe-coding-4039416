@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './App.css';
 import { AppState } from './types';
 import { initialState } from './utils/stateHelpers';
 

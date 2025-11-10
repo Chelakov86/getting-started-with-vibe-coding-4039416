@@ -13,10 +13,15 @@ export interface ClassifiedEvent extends CalendarEvent {
   classification: 'heavy' | 'medium' | 'light';
 }
 
+export interface OptimizedEvent extends ClassifiedEvent {
+  originalStart: Date;
+  originalEnd: Date;
+}
+
 export interface AppState {
   energyLevels: EnergyLevel[];
   uploadedEvents: CalendarEvent[];
   classifiedEvents: ClassifiedEvent[];
-  optimizedEvents: ClassifiedEvent[];
+  optimizedEvents: OptimizedEvent[];
   isProcessing: boolean;
 }
