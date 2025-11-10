@@ -61,6 +61,20 @@ const FileUpload: React.FC<FileUploadProps> = ({ onFileSelect, isProcessing, err
     onFileSelect(null); // Notify parent that file is cleared
   };
 
+  const handleLoadSample = async () => {
+    try {
+      const response = await fetch('/sample-calendar.ics');
+      if (!response.ok) {
+        throw new Error('Failed to load sample calendar');
+      }
+      const blob = await response.blob();
+      const file = new File([blob], 'sample-calendar.ics', { type: 'text/calendar' });
+      await handleFileValidation(file);
+    } catch (error) {
+      setInternalError('Failed to load sample calendar. Please upload your own file.');
+    }
+  };
+
   const handleDragOver = (event: DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     setIsDragOver(true);
@@ -120,6 +134,16 @@ const FileUpload: React.FC<FileUploadProps> = ({ onFileSelect, isProcessing, err
         <>
           <span className={styles.uploadIcon} aria-hidden="true">⬆️</span> {/* Placeholder for an icon */}
           <p className={styles.uploadText}>Drag & drop your .ics file here, or <strong>click to browse</strong></p>
+          <button 
+            className={styles.sampleButton}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleLoadSample();
+            }}
+            type="button"
+          >
+            📅 Try Sample Calendar
+          </button>
           {displayError && (
             <p id="file-upload-error" className={styles.errorMessage} role="alert">
               {displayError}
