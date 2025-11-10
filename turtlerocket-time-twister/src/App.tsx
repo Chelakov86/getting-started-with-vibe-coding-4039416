@@ -5,6 +5,7 @@ import EnergySelector from './components/EnergySelector';
 import FileUpload from './components/FileUpload'; // Import FileUpload component
 import { EnergyLevel } from './types/energy';
 import { initializeDefaultHourlyEnergy } from './utils/energyHelpers';
+import { parseICSFile, ICSParseError } from './utils/icsParser';
 
 const LOCAL_STORAGE_KEY = 'turtleRocketTimeTwisterAppState';
 
@@ -58,20 +59,40 @@ function App() {
     setFileUploadError(null);
     if (file) {
       setFileUploadProcessing(true);
-      console.log('File selected for processing:', file.name);
-      // Simulate API call or heavy processing
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      setFileUploadProcessing(false);
-      // Here you would typically parse the ICS file and update appState
-      // For now, just log and simulate success/failure
-      if (file.name.includes('error')) { // Example: simulate an error
-        setFileUploadError('Simulated error during file processing.');
-      } else {
-        console.log('File processed successfully (simulated).');
+      try {
+        const fileContent = await file.text();
+        const events = parseICSFile(fileContent);
+        
+        // Convert ParsedEvent to CalendarEvent format
+        const calendarEvents = events.map(event => ({
+          uid: event.id,
+          summary: event.title,
+          start: event.startTime,
+          end: event.endTime,
+        }));
+        
+        setAppState((prevState) => ({
+          ...prevState,
+          uploadedEvents: calendarEvents,
+        }));
+        
+        console.log(`Successfully parsed ${calendarEvents.length} events`);
+      } catch (error) {
+        if (error instanceof ICSParseError) {
+          setFileUploadError(error.message);
+        } else {
+          setFileUploadError('Failed to process ICS file');
+        }
+        console.error('Error parsing ICS file:', error);
+      } finally {
+        setFileUploadProcessing(false);
       }
     } else {
-      console.log('File cleared.');
-      // Clear any related state if needed
+      // Clear uploaded events when file is cleared
+      setAppState((prevState) => ({
+        ...prevState,
+        uploadedEvents: [],
+      }));
     }
   };
 
