@@ -79,7 +79,7 @@
 - [x] Write test: Visual states update
 - [x] Write test: Keyboard navigation
 - [x] Integrate into `App.tsx`
-- [ ] Commit: "Add energy selector component"
+- [x] Commit: "Add energy selector component"
 
 ### Iteration 2.3: Energy Persistence
 - [ ] Add "Reset to Default" button
