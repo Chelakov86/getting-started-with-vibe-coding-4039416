@@ -1,4 +1,5 @@
 import { HourlyEnergy } from './energy';
+import { CognitiveLoad } from './classification';
 
 export interface CalendarEvent {
   uid: string;
@@ -8,7 +9,7 @@ export interface CalendarEvent {
 }
 
 export interface ClassifiedEvent extends CalendarEvent {
-  classification: 'heavy' | 'medium' | 'light';
+  classification: CognitiveLoad;
 }
 
 export interface OptimizedEvent extends ClassifiedEvent {
@@ -23,3 +24,6 @@ export interface AppState {
   optimizedEvents: OptimizedEvent[];
   isProcessing: boolean;
 }
+
+// Re-export classification types
+export type { CognitiveLoad, ClassificationResult, ClassificationOptions, KeywordMatch } from './classification';
