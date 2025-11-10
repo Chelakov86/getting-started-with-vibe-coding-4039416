@@ -186,11 +186,16 @@
 ## 📊 Phase 5: Schedule Optimization
 
 ### Iteration 5.1: Optimization Algorithm
-- [ ] Create `src/utils/timeSlotMapper.ts`:
-  - [ ] `createTimeSlotMap()` function
-  - [ ] `getAvailableSlots()` function
-  - [ ] `isSlotAvailable()` function
-  - [ ] Time utility functions
+- [x] Create `src/utils/timeSlotMapper.ts`:
+  - [x] `createTimeSlotMap()` function
+  - [x] `getAvailableSlots()` function
+  - [x] `isSlotAvailable()` function
+  - [x] Time utility functions (calculateDuration, addHoursToDate, getHourFromDate, createDateAtHour, isWithinWorkingHours)
+  - [x] Write comprehensive tests (45 tests covering all functions)
+  - [x] Support 8 AM - 8 PM time range
+  - [x] Handle event duration calculations with partial hours
+  - [x] Account for slot availability and conflicts
+  - [x] Test boundary conditions and slot conflict detection
 - [ ] Create `src/utils/optimizer.ts`
 - [ ] Implement core algorithm:
   - [ ] Sort events by cognitive load
