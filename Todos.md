@@ -34,18 +34,18 @@
 - [x] Commit: "feat: Initialize TurtleRocket Time Twister React project"
 
 ### Iteration 1.2: Core State Structure
-- [ ] Create `src/types/index.ts` with TypeScript interfaces:
-  - [ ] Define `EnergyLevel` type
-  - [ ] Define `CalendarEvent` interface
-  - [ ] Define `ClassifiedEvent` interface
-  - [ ] Define `OptimizedEvent` interface
-  - [ ] Define `AppState` interface
-- [ ] Initialize state in `App.tsx`
+- [x] Create `src/types/index.ts` with TypeScript interfaces:
+  - [x] Define `EnergyLevel` type
+  - [x] Define `CalendarEvent` interface
+  - [x] Define `ClassifiedEvent` interface
+  - [x] Define `OptimizedEvent` interface
+  - [x] Define `AppState` interface
+- [x] Initialize state in `App.tsx`
 - [x] Create `src/utils/stateHelpers.ts`
 - [x] Write test: Initial state has correct defaults
-- [ ] Write test: State update functions work correctly
-- [ ] Write test: State immutability is maintained
-- [ ] Commit: "Add state management and types"
+- [x] Write test: State update functions work correctly
+- [x] Write test: State immutability is maintained
+- [x] Commit: "Add state management and types"
 
 ---
 
