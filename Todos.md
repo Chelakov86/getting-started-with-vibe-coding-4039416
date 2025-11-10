@@ -324,29 +324,29 @@
 - [x] Commit: "feat: Implement ICS file generation for optimized schedules"
 
 ### Iteration 7.2: Download Implementation
-- [ ] Create `src/components/ExportButton.tsx`
-- [ ] Create `src/utils/download.ts`
-- [ ] Implement file download:
-  - [ ] Create blob from ICS
-  - [ ] Trigger browser download
-  - [ ] Generate filename with timestamp
-- [ ] Add loading state
-- [ ] Add success feedback
-- [ ] Write test: Download trigger
-- [ ] Write test: Filename generation
-- [ ] Write test: Error handling
-- [ ] Commit: "Add download functionality"
+- [x] Create `src/components/ExportButton.tsx`
+- [x] Create `src/utils/download.ts`
+- [x] Implement file download:
+  - [x] Create blob from ICS
+  - [x] Trigger browser download
+  - [x] Generate filename with timestamp
+- [x] Add loading state
+- [x] Add success feedback
+- [x] Write test: Download trigger
+- [x] Write test: Filename generation
+- [x] Write test: Error handling
+- [x] Commit: "Add download functionality"
 
 ### Iteration 7.3: Full Integration
-- [ ] Wire export to optimization results
-- [ ] Add download button to UI
-- [ ] Style as call-to-action
-- [ ] Disable during processing
-- [ ] Add error notifications
-- [ ] Write test: Full export flow
-- [ ] Write test: Button states
+- [x] Wire export to optimization results
+- [x] Add download button to UI
+- [x] Style as call-to-action
+- [x] Disable during processing
+- [x] Add error notifications
+- [x] Write test: Full export flow
+- [x] Write test: Button states
 - [ ] Test with real calendar apps
-- [ ] Commit: "Complete export integration"
+- [x] Commit: "Complete export integration"
 
 ---
 
