@@ -88,7 +88,7 @@
 - [x] Write test: Reset button works
 - [x] Write test: State persistence between re-renders
 - [x] Add visual feedback for interactions
-- [ ] Commit: "Add energy persistence and reset"
+- [x] Commit: "Add energy persistence and reset"
 
 ---
 
