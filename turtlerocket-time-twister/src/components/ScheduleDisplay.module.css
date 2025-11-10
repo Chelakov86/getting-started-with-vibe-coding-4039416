@@ -1,0 +1,195 @@
+.scheduleDisplay {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.timeline {
+  display: flex;
+  gap: 10px;
+  min-height: 720px; /* 12 hours * 60px */
+}
+
+.hourColumn {
+  display: flex;
+  flex-direction: column;
+  min-width: 70px;
+  flex-shrink: 0;
+}
+
+.hourMarker {
+  height: 60px;
+  display: flex;
+  align-items: flex-start;
+  font-size: 0.85em;
+  color: #666;
+  font-weight: 500;
+  padding-top: 2px;
+}
+
+.eventsColumn {
+  flex: 1;
+  position: relative;
+  border-left: 2px solid #e0e0e0;
+  min-height: 780px; /* 13 hours * 60px */
+}
+
+.energyBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 60px; /* Leave space for last hour marker */
+  pointer-events: none;
+  z-index: 0;
+}
+
+.energySlot {
+  height: 60px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.energyHigh {
+  background-color: rgba(76, 175, 80, 0.08); /* Light green with transparency */
+}
+
+.energyMedium {
+  background-color: rgba(255, 193, 7, 0.08); /* Light yellow with transparency */
+}
+
+.energyLow {
+  background-color: rgba(33, 150, 243, 0.08); /* Light blue with transparency */
+}
+
+.eventsContainer {
+  position: relative;
+  min-height: 780px;
+  z-index: 1;
+}
+
+.eventBlock {
+  position: absolute;
+  border-radius: 6px;
+  padding: 8px 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.eventBlock:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+}
+
+.eventBlock:focus {
+  outline: 2px solid #2196F3;
+  outline-offset: 2px;
+  z-index: 10;
+}
+
+/* Cognitive Load Color Coding (left border) */
+.eventBlock.heavy {
+  border-left-color: #F44336; /* Red */
+  background-color: #FFEBEE;
+}
+
+.eventBlock.medium {
+  border-left-color: #FF9800; /* Orange */
+  background-color: #FFF3E0;
+}
+
+.eventBlock.light {
+  border-left-color: #4CAF50; /* Green */
+  background-color: #E8F5E9;
+}
+
+.eventTitle {
+  font-weight: 600;
+  font-size: 0.9em;
+  margin-bottom: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #333;
+}
+
+.eventTime {
+  font-size: 0.75em;
+  color: #666;
+  margin-bottom: 2px;
+}
+
+.eventDuration {
+  font-size: 0.7em;
+  color: #888;
+  font-weight: 500;
+}
+
+.emptyState {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #999;
+  font-style: italic;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .scheduleDisplay {
+    padding: 10px;
+  }
+
+  .hourColumn {
+    min-width: 50px;
+  }
+
+  .hourMarker {
+    font-size: 0.75em;
+  }
+
+  .eventBlock {
+    padding: 6px 8px;
+  }
+
+  .eventTitle {
+    font-size: 0.85em;
+  }
+
+  .eventTime {
+    font-size: 0.7em;
+  }
+
+  .eventDuration {
+    font-size: 0.65em;
+  }
+}
+
+@media (max-width: 480px) {
+  .timeline {
+    gap: 5px;
+  }
+
+  .hourColumn {
+    min-width: 45px;
+  }
+
+  .eventBlock {
+    padding: 4px 6px;
+    border-left-width: 3px;
+  }
+
+  .eventTitle {
+    font-size: 0.8em;
+  }
+}
