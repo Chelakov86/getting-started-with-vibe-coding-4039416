@@ -112,20 +112,20 @@
 - [x] Commit: "Add file upload component"
 
 ### Iteration 3.2: ICS Parser
-- [ ] Create `src/utils/icsParser.ts`
-- [ ] Implement `parseICSFile()` function
-- [ ] Extract event properties:
-  - [ ] SUMMARY (title)
-  - [ ] DTSTART (start time)
-  - [ ] DTEND (end time)
-  - [ ] UID (unique identifier)
-- [ ] Convert to JavaScript Date objects
-- [ ] Handle timezone conversions
-- [ ] Write test: Valid ICS parsing
-- [ ] Write test: Multiple events extraction
-- [ ] Write test: Timezone handling
-- [ ] Write test: Error handling for malformed files
-- [ ] Commit: "Add ICS parser"
+- [x] Create `src/utils/icsParser.ts`
+- [x] Implement `parseICSFile()` function
+- [x] Extract event properties:
+  - [x] SUMMARY (title)
+  - [x] DTSTART (start time)
+  - [x] DTEND (end time)
+  - [x] UID (unique identifier)
+- [x] Convert to JavaScript Date objects
+- [x] Handle timezone conversions
+- [x] Write test: Valid ICS parsing
+- [x] Write test: Multiple events extraction
+- [x] Write test: Timezone handling
+- [x] Write test: Error handling for malformed files
+- [x] Commit: "Add ICS parser"
 
 ---
 
