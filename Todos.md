@@ -132,29 +132,48 @@
 ## 🏷️ Phase 4: Event Classification
 
 ### Iteration 4.1: Keyword Configuration
-- [ ] Create `src/config/keywords.ts`
-- [ ] Define `HEAVY_KEYWORDS` array:
-  - [ ] Work-related: meeting, review, presentation, interview
-  - [ ] Planning: strategy, planning, roadmap, brainstorm
-  - [ ] Analysis: analysis, report, assessment, evaluation
-  - [ ] Decision: decision, approval, priority, budget
-- [ ] Define `LIGHT_KEYWORDS` array:
-  - [ ] Breaks: lunch, break, coffee, snack
-  - [ ] Social: birthday, happy hour, team lunch
-  - [ ] Personal: gym, workout, appointment
-  - [ ] Optional: optional, tentative, hold
-- [ ] Organize keywords by category
-- [ ] Write test: No keyword conflicts
-- [ ] Write test: Comprehensive coverage
-- [ ] Commit: "Add keyword configuration"
+- [x] Create `src/config/keywords.ts`
+- [x] Define `HEAVY_KEYWORDS` array (53 keywords):
+  - [x] Meetings & Collaboration: meeting, interview, presentation, demo, pitch, negotiation, brainstorm, workshop, retrospective, retro, planning, standup, sync, all-hands, town hall
+  - [x] Reviews & Analysis: review, code review, design review, performance review, audit, assessment, evaluation, analysis, deep dive
+  - [x] Decision Making & Strategy: strategy, strategic, decision, prioritization, roadmap, architecture, design session
+  - [x] Training & Learning: training, onboarding, certification, exam, learning session, tutorial
+  - [x] Problem Solving: debugging, troubleshooting, incident, postmortem, research, investigation, implementation
+  - [x] Stakeholders: client, customer, stakeholder, executive, board, investor
+- [x] Define `LIGHT_KEYWORDS` array (51 keywords):
+  - [x] Breaks & Personal: lunch, break, coffee, tea, snack, breakfast, dinner, meal, rest, personal, break time, time off
+  - [x] Social: social, happy hour, team building, celebration, birthday, party, casual, chat, watercooler, informal
+  - [x] Administrative: admin, administrative, calendar, scheduling, logistics, setup, cleanup, organize
+  - [x] Passive: fyi, info, information, announcement, update, status update, reminder, notification
+  - [x] Low-Effort Communication: check-in, touch base, quick sync, office hours, availability, optional
+  - [x] Wellness: exercise, workout, gym, walk, yoga, meditation, wellness
+- [x] Organize keywords by category using `KEYWORD_CATEGORIES`
+- [x] Add `KEYWORD_MATCHING_CONFIG` for case-insensitive and partial matching
+- [x] Write test: No keyword conflicts (27 comprehensive tests)
+- [x] Write test: Comprehensive coverage
+- [x] Write test: Case sensitivity handling
+- [x] Write test: Keyword quality standards
+- [x] Write test: Real-world event title coverage
+- [x] Write test: Extensibility
+- [x] Commit: "Add keyword-based classification system for cognitive load assessment"
 
-### Iteration 4.2: Classification Engine
+### Iteration 4.2: Type Definitions
+- [x] Create `src/types/classification.ts`
+- [x] Define `CognitiveLoad` type: 'heavy' | 'medium' | 'light'
+- [x] Define `ClassificationResult` interface with matched keywords
+- [x] Define `ClassificationOptions` interface for customization
+- [x] Define `KeywordMatch` interface
+- [x] Update `src/types/index.ts` to use `CognitiveLoad` type
+- [x] Re-export classification types
+- [x] Commit: (included in 4.1)
+
+### Iteration 4.3: Classification Engine
 - [ ] Create `src/utils/classifier.ts`
 - [ ] Implement `classifyEvent()` function
 - [ ] Implement `classifyEvents()` batch function
 - [ ] Add `getMatchedKeywords()` for reasoning
-- [ ] Support partial word matching
-- [ ] Case-insensitive matching
+- [ ] Support partial word matching (using config)
+- [ ] Case-insensitive matching (using config)
 - [ ] Write test: Single keyword matching
 - [ ] Write test: Multiple keyword scenarios
 - [ ] Write test: Precedence rules (heavy > light)
