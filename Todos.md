@@ -82,12 +82,12 @@
 - [x] Commit: "Add energy selector component"
 
 ### Iteration 2.3: Energy Persistence
-- [ ] Add "Reset to Default" button
-- [ ] Implement reset functionality
-- [ ] Add smooth transitions between states
-- [ ] Write test: Reset button works
-- [ ] Write test: State persistence between re-renders
-- [ ] Add visual feedback for interactions
+- [x] Add "Reset to Default" button
+- [x] Implement reset functionality
+- [x] Add smooth transitions between states
+- [x] Write test: Reset button works
+- [x] Write test: State persistence between re-renders
+- [x] Add visual feedback for interactions
 - [ ] Commit: "Add energy persistence and reset"
 
 ---

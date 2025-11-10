@@ -1,11 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AppState } from './types';
 import { initialState } from './utils/stateHelpers';
 import EnergySelector from './components/EnergySelector';
 import { EnergyLevel, HourlyEnergy } from './types/energy';
+import { initializeDefaultHourlyEnergy } from './utils/energyHelpers';
+
+const LOCAL_STORAGE_KEY = 'turtleRocketTimeTwisterAppState';
 
 function App() {
-  const [appState, setAppState] = useState<AppState>(initialState);
+  const [appState, setAppState] = useState<AppState>(() => {
+    try {
+      const storedState = localStorage.getItem(LOCAL_STORAGE_KEY);
+      if (storedState) {
+        const parsedState: AppState = JSON.parse(storedState);
+        // Ensure hourlyEnergy is properly initialized if not present or malformed
+        if (!parsedState.hourlyEnergy || Object.keys(parsedState.hourlyEnergy).length === 0) {
+          parsedState.hourlyEnergy = initializeDefaultHourlyEnergy();
+        }
+        return parsedState;
+      }
+    } catch (error) {
+      console.error("Failed to parse state from localStorage", error);
+    }
+    return { ...initialState, hourlyEnergy: initializeDefaultHourlyEnergy() };
+  });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(appState));
+    } catch (error) {
+      console.error("Failed to save state to localStorage", error);
+    }
+  }, [appState]);
 
   const handleEnergyChange = (hour: number, level: EnergyLevel) => {
     setAppState((prevState) => ({
@@ -18,13 +44,9 @@ function App() {
   };
 
   const handleResetEnergy = () => {
-    const defaultHourlyEnergy: HourlyEnergy = {};
-    for (let i = 8; i < 20; i++) {
-      defaultHourlyEnergy[i] = EnergyLevel.Medium;
-    }
     setAppState((prevState) => ({
       ...prevState,
-      hourlyEnergy: defaultHourlyEnergy,
+      hourlyEnergy: initializeDefaultHourlyEnergy(),
     }));
   };
 
