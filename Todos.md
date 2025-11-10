@@ -52,20 +52,20 @@
 ## 🔋 Phase 2: Energy Level Input
 
 ### Iteration 2.1: Energy Data Model
-- [ ] Create `src/types/energy.ts`:
-  - [ ] Define `EnergyLevel` type ('low' | 'medium' | 'high')
-  - [ ] Define `TimeSlot` interface
-  - [ ] Create `EnergyEmoji` constant object
-  - [ ] Create `EnergyColors` constant object
-- [ ] Create `src/utils/energyHelpers.ts`:
-  - [ ] `initializeDefaultEnergy()` function
-  - [ ] `updateEnergyLevel()` function
-  - [ ] `getEnergyForHour()` function
-  - [ ] `resetToDefault()` function
-- [ ] Write test: Energy level cycling works
-- [ ] Write test: Boundary checking (8 AM - 8 PM)
-- [ ] Write test: Default initialization
-- [ ] Commit: "Add energy level data model"
+- [x] Create `src/types/energy.ts`:
+  - [x] Define `EnergyLevel` type ('low' | 'medium' | 'high')
+  - [x] Define `TimeSlot` interface
+  - [x] Create `EnergyEmoji` constant object
+  - [x] Create `EnergyColors` constant object
+- [x] Create `src/utils/energyHelpers.ts`:
+  - [x] `initializeDefaultEnergy()` function
+  - [x] `updateEnergyLevel()` function
+  - [x] `getEnergyForHour()` function
+  - [x] `resetToDefault()` function
+- [x] Write test: Energy level cycling works
+- [x] Write test: Boundary checking (8 AM - 8 PM)
+- [x] Write test: Default initialization
+- [x] Commit: "Add energy level data model"
 
 ### Iteration 2.2: Energy Selector Component
 - [ ] Create `src/components/EnergySelector.tsx`
