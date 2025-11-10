@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { AppState, ClassifiedEvent } from './types';
 import { initialState } from './utils/stateHelpers';
 import EnergySelector from './components/EnergySelector';
-import FileUpload from './components/FileUpload'; // Import FileUpload component
+import FileUpload from './components/FileUpload';
+import ScheduleDisplay from './components/ScheduleDisplay';
+import ScheduleComparison from './components/ScheduleComparison';
 import { EnergyLevel } from './types/energy';
 import { initializeDefaultHourlyEnergy } from './utils/energyHelpers';
 import { parseICSFile, ICSParseError } from './utils/icsParser';
@@ -127,6 +129,26 @@ function App() {
           isProcessing={fileUploadProcessing}
           error={fileUploadError}
         />
+        
+        {appState.classifiedEvents.length > 0 && (
+          <section>
+            <h2>Current Schedule</h2>
+            <ScheduleDisplay
+              events={appState.classifiedEvents}
+              showEnergyLevels={true}
+              energyLevels={appState.hourlyEnergy}
+            />
+          </section>
+        )}
+        
+        {appState.optimizedEvents.length > 0 && (
+          <section>
+            <ScheduleComparison
+              optimizedEvents={appState.optimizedEvents}
+              energyLevels={appState.hourlyEnergy}
+            />
+          </section>
+        )}
       </main>
     </div>
   );

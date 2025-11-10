@@ -263,17 +263,39 @@
 - [x] Commit: "Add schedule display component with comprehensive tests"
 
 ### Iteration 6.2: Comparison View
-- [ ] Create `src/components/ScheduleComparison.tsx`
-- [ ] Show original vs optimized side-by-side
-- [ ] Add movement indicators:
-  - [ ] Strikethrough for old times
-  - [ ] Bold for new times
-  - [ ] Arrows for direction (↑↓)
-  - [ ] Time difference labels
-- [ ] Write test: Change detection
-- [ ] Write test: Movement indicators
-- [ ] Write test: Responsive layout
-- [ ] Commit: "Add comparison view"
+- [x] Create `src/components/ScheduleComparison.tsx`
+- [x] Create `src/components/ScheduleComparison.module.css`
+- [x] Show original vs optimized side-by-side
+- [x] Add movement indicators:
+  - [x] Strikethrough for old times
+  - [x] Bold for new times
+  - [x] Arrows for direction (↑ earlier / ↓ later)
+  - [x] Time difference labels (e.g., "2 hours 30 mins earlier")
+- [x] Add optimization summary statistics:
+  - [x] Total events count
+  - [x] Events optimized count
+  - [x] Average displacement
+  - [x] Moved earlier/later counts
+- [x] Implement responsive design:
+  - [x] Two-column layout on desktop
+  - [x] Stacked layout on mobile
+- [x] Add visual enhancements:
+  - [x] Classification badges
+  - [x] Event cards with hover effects
+  - [x] Slide-in animations for moved events
+- [x] Write test: Empty state handling
+- [x] Write test: Event display correctness
+- [x] Write test: Change detection logic
+- [x] Write test: Movement indicator logic (↑/↓)
+- [x] Write test: Time difference calculations
+- [x] Write test: Summary statistics accuracy
+- [x] Write test: Accessibility features (ARIA labels)
+- [x] Write test: Multiple events with mixed states
+- [x] Write integration test: Full optimization flow
+- [x] All 21 tests passing (303 total project tests)
+- [x] Integrate into `App.tsx` with ScheduleDisplay
+- [x] Create comprehensive documentation (SCHEDULE_COMPARISON_README.md)
+- [x] Commit: "feat: Add schedule comparison component with before/after view and optimization summary"
 
 ---
 

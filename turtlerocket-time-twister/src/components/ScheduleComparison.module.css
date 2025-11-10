@@ -1,0 +1,268 @@
+.scheduleComparison {
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+  font-size: 16px;
+}
+
+/* Summary Section */
+.summarySection {
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.summarySection h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.summaryStats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background-color: white;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+}
+
+.statLabel {
+  font-weight: 500;
+  color: #666;
+}
+
+.statValue {
+  font-size: 18px;
+  font-weight: 600;
+  color: #007bff;
+}
+
+/* Comparison Grid */
+.comparisonGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.columnHeader {
+  text-align: center;
+  padding: 12px;
+  background-color: #f0f0f0;
+  border-radius: 6px 6px 0 0;
+  border: 1px solid #ddd;
+  border-bottom: none;
+}
+
+.columnHeader h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  color: #333;
+}
+
+/* Event Cards */
+.eventCard {
+  padding: 16px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  background-color: white;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.eventCard:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.eventCard.moved {
+  border-color: #007bff;
+  background-color: #f0f8ff;
+}
+
+.eventHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+  gap: 8px;
+}
+
+.eventTitle {
+  flex: 1;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  word-break: break-word;
+}
+
+.eventTitle.strikethrough {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.eventTitle.bold {
+  font-weight: 700;
+  color: #000;
+}
+
+.eventTime {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.eventTime.strikethrough {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.eventTime.bold {
+  font-weight: 600;
+  color: #000;
+}
+
+.eventDuration {
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 8px;
+}
+
+.classificationBadge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.classificationBadge.heavy {
+  background-color: #dc3545;
+  color: white;
+}
+
+.classificationBadge.medium {
+  background-color: #ffc107;
+  color: #333;
+}
+
+.classificationBadge.light {
+  background-color: #28a745;
+  color: white;
+}
+
+/* Movement Indicators */
+.movementIndicator {
+  display: inline-block;
+  margin-left: 8px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.movementIndicator.earlier {
+  color: #28a745;
+}
+
+.movementIndicator.later {
+  color: #ffc107;
+}
+
+.timeDifference {
+  font-size: 13px;
+  font-weight: 600;
+  color: #007bff;
+  margin-top: 8px;
+  padding: 6px 8px;
+  background-color: #e7f3ff;
+  border-radius: 4px;
+  text-align: center;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .scheduleComparison {
+    padding: 12px;
+  }
+
+  .comparisonGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .columnHeader:first-child {
+    order: 1;
+  }
+
+  .originalEvent {
+    order: 2;
+  }
+
+  .columnHeader:nth-child(2) {
+    order: 3;
+  }
+
+  .optimizedEvent {
+    order: 4;
+  }
+
+  /* Stack pairs of events */
+  .comparisonGrid > :nth-child(4n+3) {
+    order: calc(var(--event-order, 0) * 2 + 2);
+  }
+
+  .comparisonGrid > :nth-child(4n+4) {
+    order: calc(var(--event-order, 0) * 2 + 4);
+  }
+
+  .summaryStats {
+    grid-template-columns: 1fr;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .eventCard {
+    padding: 12px;
+  }
+}
+
+/* Animation for changes (optional) */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.eventCard.moved {
+  animation: slideIn 0.5s ease-out;
+}
