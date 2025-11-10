@@ -103,7 +103,7 @@ const findBestSlot = (
         if (!slotsByEnergy[energyLevel]) {
           slotsByEnergy[energyLevel] = [];
         }
-        slotsByEnergy[energyLevel].push(hour);
+        slotsByEnergy[energyLevel]!.push(hour);
       }
     }
   }
