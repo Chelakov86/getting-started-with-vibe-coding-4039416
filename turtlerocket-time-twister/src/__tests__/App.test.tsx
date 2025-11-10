@@ -40,7 +40,7 @@ describe('App', () => {
 
   test('renders the main heading', () => {
     render(<App />);
-    const headingElement = screen.getByText(/TurtleRocket Time Twister/i);
+    const headingElement = screen.getByRole('heading', { name: /TurtleRocket Time Twister/i });
     expect(headingElement).toBeInTheDocument();
   });
 

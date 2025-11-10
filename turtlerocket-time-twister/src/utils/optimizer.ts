@@ -14,12 +14,6 @@ export interface OptimizationResult {
   metrics: OptimizationMetrics;
 }
 
-interface TimeSlot {
-  hour: number;
-  energyLevel: EnergyLevel;
-  available: boolean;
-}
-
 const WORK_DAY_START = 8;
 const WORK_DAY_END = 20;
 

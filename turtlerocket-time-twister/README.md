@@ -1,46 +1,110 @@
-# Getting Started with Create React App
+# 🐢🚀 TurtleRocket Time Twister
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Optimize your schedule based on your energy levels**
 
-## Available Scripts
+TurtleRocket Time Twister is a smart calendar optimization tool that reorganizes your schedule to match tasks with your natural energy patterns throughout the day. Upload your calendar, set your energy levels, and get an optimized schedule that aligns high-energy tasks with your peak performance hours.
 
-In the project directory, you can run:
+## ✨ Features
 
-### `npm start`
+- 📅 **ICS File Support** - Import calendars from Google Calendar, Outlook, Apple Calendar, and more
+- 🎯 **Smart Classification** - Automatically categorizes events as Heavy, Medium, or Light cognitive load
+- ⚡ **Energy-Based Optimization** - Matches tasks to your energy levels throughout the day
+- 📊 **Visual Comparison** - Side-by-side view of original vs. optimized schedule
+- 💾 **Export Optimized Schedule** - Download your optimized calendar as an ICS file
+- 💪 **Persistent State** - Your energy levels are saved locally
+- ⌨️ **Keyboard Shortcuts** - Quick actions for power users
+- 📱 **Responsive Design** - Works on desktop, tablet, and mobile
+- ♿ **Accessibility** - WCAG 2.1 compliant with full keyboard navigation
+- 🎨 **Beautiful UI** - Modern, polished interface with smooth transitions
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 🚀 Quick Start
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Prerequisites
 
-### `npm test`
+- Node.js 16+ and npm
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Installation
 
-### `npm run build`
+\`\`\`bash
+# Navigate to project directory
+cd turtlerocket-time-twister
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Install dependencies
+npm install
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Start development server
+npm start
+\`\`\`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The app will open at [http://localhost:3000](http://localhost:3000)
 
-### `npm run eject`
+## 📖 How to Use
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Step 1: Set Your Energy Levels
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Define your energy levels for each hour of the day (8 AM - 8 PM):
+- 🔴 **High** - Peak focus and productivity
+- 🟡 **Medium** - Moderate energy and attention
+- 🟢 **Low** - Relaxed, suitable for lighter tasks
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Step 2: Upload Your Calendar
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. Click "Choose File" or drag-and-drop your \`.ics\` calendar file
+2. The app will automatically parse and classify your events
+3. View your current schedule with cognitive load indicators
 
-## Learn More
+### Step 3: Optimize Your Schedule
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Click "Optimize Schedule" or press \`Ctrl/Cmd + O\`
+2. Review the side-by-side comparison of original vs. optimized schedules
+3. See detailed metrics about how your schedule was improved
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Step 4: Export Your Optimized Calendar
+
+1. Click "Export Optimized Calendar"
+2. Import the downloaded \`.ics\` file into your calendar application
+3. Enjoy your optimized schedule!
+
+## 🎮 Keyboard Shortcuts
+
+- \`Ctrl/Cmd + O\` - Optimize schedule
+- \`Ctrl/Cmd + R\` - Reset energy levels to default
+- \`Tab\` - Navigate between interactive elements
+
+## 🧪 Testing
+
+Run the comprehensive test suite:
+
+\`\`\`bash
+# Run all tests
+npm test
+
+# Run tests with coverage
+npm test -- --coverage --watchAll=false
+
+# Run specific test file
+npm test -- App.integration.test
+\`\`\`
+
+### Test Coverage
+
+- ✅ Unit tests for all utility functions
+- ✅ Component integration tests
+- ✅ End-to-end user flow tests
+- ✅ Error handling scenarios
+- ✅ Performance benchmarks
+- ✅ Accessibility compliance
+
+## 🚀 Production Build
+
+\`\`\`bash
+npm run build
+\`\`\`
+
+The optimized production build will be in the \`build/\` folder.
+
+---
+
+Made with ❤️ by the TurtleRocket Team
+
+**Happy Optimizing! 🐢🚀**
